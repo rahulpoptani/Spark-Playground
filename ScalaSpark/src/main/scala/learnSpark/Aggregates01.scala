@@ -4,7 +4,7 @@ import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.{col, max, min, sum}
 
-object Aggregates {
+object Aggregates01 {
   Logger.getLogger("org").setLevel(Level.WARN)
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().appName(this.getClass.getName).master("local[*]").getOrCreate()
@@ -25,6 +25,6 @@ object Aggregates {
 
     df.groupBy(col("department")).sum("salary").show(false)
 
-    df.groupBy(col("department"), col("state")).agg(sum("salary"), max("salary"), min("salary")).show(false)
+    df.groupBy(col("department"), col("state")).agg(sum("salary").as("sumSalary"), max("salary").alias("maxSalary"), min("salary").as("minSalary")).show(false)
   }
 }

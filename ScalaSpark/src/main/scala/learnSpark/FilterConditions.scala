@@ -1,4 +1,4 @@
-package learn
+package learnSpark
 
 import org.apache.spark.sql.{Row, SparkSession}
 import org.apache.log4j.{Level, Logger}
@@ -28,8 +28,7 @@ object FilterConditions {
       .add("state", StringType)
       .add("gender", StringType)
 
-    val df = spark.createDataFrame(
-              spark.sparkContext.parallelize(arrayStructureData),arrayStructureSchema)
+    val df = spark.createDataFrame(spark.sparkContext.parallelize(arrayStructureData),arrayStructureSchema)
     df.printSchema()
     df.show()
 

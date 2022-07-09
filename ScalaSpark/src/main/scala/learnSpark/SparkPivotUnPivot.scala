@@ -1,9 +1,10 @@
 package learnSpark
 
 import org.apache.spark.sql.SparkSession
-import org.apache.log4j.{Logger,Level}
+import org.apache.log4j.{Level, Logger}
+import org.apache.spark.sql.types.{DataType, StructType}
 
-object Pivot {
+object SparkPivotUnPivot {
   Logger.getLogger("org").setLevel(Level.WARN)
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().appName("Test").master("local[*]").getOrCreate()
@@ -30,5 +31,7 @@ object Pivot {
 
     val pivotDF = df1.groupBy("Product").pivot("Country").sum("Amount") // for performance improvements provide pivot column list beforehand
     pivotDF.show()
+
+
   }
 }

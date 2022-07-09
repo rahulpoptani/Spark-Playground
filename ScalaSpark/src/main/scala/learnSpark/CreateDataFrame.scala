@@ -22,16 +22,14 @@ object CreateDataFrame {
     // Sequence to RDD to DF with Schema
     val two = Seq(Row(1, "ABC"), Row(2, "DEF"))
     val twoRDD = spark.sparkContext.parallelize(two)
-    val schema = StructType(List(StructField("id", IntegerType),StructField("name", StringType)))
+    val schema = new StructType().add("id", IntegerType).add("name", StringType)
     val twoDF = spark.createDataFrame(twoRDD, schema)
     twoDF.show(false)
 
     // Store dataframe as hive table
     twoDF.write.mode(SaveMode.Overwrite).saveAsTable("twoDF")
-    // Read table from Hive Context
-    val hiveContext = new HiveContext(spark.sparkContext)
-    val hiveDF = hiveContext.sql("select * from twoDF")
-    hiveDF.show(false)
+    // Read Hive Table
+    spark.read.table("twoDF").show(false)
 
     // Create DataFrame from List
     val four = Seq((1, "ABC"),(2, "DEF"))
@@ -50,7 +48,7 @@ object CreateDataFrame {
     val newDF = dfFromData.map(row => {
       val nameSplit = row.getAs[String](0).split(",")
       val addSplit = row.getAs[String](1).split(",")
-      (nameSplit(0),nameSplit(1),addSplit(0),addSplit(1),addSplit(2),addSplit(3))
+      (nameSplit(0).trim,nameSplit(1).trim,addSplit(0).trim,addSplit(1).trim,addSplit(2).trim,addSplit(3).trim)
     })
     val finalDF = newDF.toDF("First Name","Last Name","Address Line1","City","State","zipCode")
     finalDF.printSchema()
