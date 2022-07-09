@@ -1,0 +1,3 @@
+package learnScala object ScalaCollections {
+
+}
