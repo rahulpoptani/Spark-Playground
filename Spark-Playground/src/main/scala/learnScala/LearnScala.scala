@@ -6,11 +6,11 @@ object LearnScala {
 
   def main(args: Array[String]): Unit = {
 
-    // calling an function
+    // calling a function
     cube(3)
 
     // Pattern Matching
-    val numPattern = "[0-9]+".r // Here, .r means it's an regix
+    val numPattern = "[0-9]+".r // Here, .r means it's a regix
     val address = "123 Main Street 101"
     val match1 = numPattern.findFirstIn(address)
     val match2 = numPattern.findAllIn(address) // returns match iterator

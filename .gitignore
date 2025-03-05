@@ -1,2 +1,11 @@
 *.class
 *.log
+.idea
+.bsp
+.vscode
+.metals
+metastore_db
+project
+spark-warehouse
+target
+ScalaSpark/src/main/scala/Test.scala

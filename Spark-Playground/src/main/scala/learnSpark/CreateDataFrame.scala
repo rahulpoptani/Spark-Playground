@@ -1,11 +1,9 @@
 package learnSpark
 
-import org.apache.spark.sql.{Encoders, Row, SaveMode, SparkSession}
+import org.apache.spark.sql.{Row, SaveMode, SparkSession}
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.sql.catalyst.parser.SqlBaseParser.CreateHiveTableContext
 import org.apache.spark.sql.functions.col
-import org.apache.spark.sql.hive.{HiveContext, HiveUDAFBuffer}
-import org.apache.spark.sql.types.{DataType, IntegerType, StringType, StructField, StructType}
+import org.apache.spark.sql.types.{DataType, IntegerType, StringType, StructType}
 
 
 object CreateDataFrame {
